@@ -33,3 +33,6 @@
 # Ignore key files for decrypting credentials and more.
 /config/*.key
 
+# Runtime state for the Temporal trial demo (upgrade flags, reminder log).
+/temporal/tmp/
+

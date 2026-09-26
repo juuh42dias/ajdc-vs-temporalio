@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_26_214438) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_26_215205) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
   create_table "active_job_durable_runs", force: :cascade do |t|
     t.string "job_class", null: false
     t.string "key", null: false
@@ -58,5 +61,31 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_26_214438) do
     t.index ["run_id", "position"], name: "index_active_job_durable_steps_on_position"
   end
 
+  create_table "import_items", force: :cascade do |t|
+    t.integer "import_id", null: false
+    t.string "label"
+    t.boolean "processed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["import_id"], name: "index_import_items_on_import_id"
+  end
+
+  create_table "imports", force: :cascade do |t|
+    t.string "name"
+    t.boolean "confirmed"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "licenses", force: :cascade do |t|
+    t.string "identifier"
+    t.datetime "expires_at"
+    t.datetime "revoked_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "active_job_durable_steps", "active_job_durable_runs", column: "run_id", on_delete: :cascade
+  add_foreign_key "import_items", "imports"
 end

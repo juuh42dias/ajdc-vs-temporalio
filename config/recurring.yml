@@ -1,0 +1,13 @@
+# Recurring clock for AJ/DC waiting runs (`wait` / `wait_until`) and retention.
+# Used by Solid Queue's recurring scheduler (`bin/jobs` with `solid_queue`
+# dispatchers). In development you can run jobs inline and skip this file —
+# see script/verify_ajdc.rb. For real waiting runs:
+#
+#   SOLID_QUEUE_IN_PUMA=1 bin/rails server   # or: bin/jobs
+durable_wake:
+  class: ActiveJob::Durable::WakeJob
+  schedule: every minute
+
+durable_housekeeping:
+  class: ActiveJob::Durable::HousekeepingJob
+  schedule: every hour

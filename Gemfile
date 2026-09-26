@@ -38,7 +38,7 @@ gem "kamal", require: false
 gem "thruster", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 2.1"
 
 # temporalio 1.x calls JSON.parse with options (json 2.x API);
 # json 3.x removed it, so pin to 2.x until the SDK supports it.

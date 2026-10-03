@@ -42,7 +42,7 @@ gem "image_processing", "~> 2.1"
 
 # temporalio 1.x calls JSON.parse with options (json 2.x API);
 # json 3.x removed it, so pin to 2.x until the SDK supports it.
-gem "json", "~> 2.0"
+gem "json", "~> 3.0"
 
 # Durable continuations for Active Job (AJ/DC) — the Rails-native side of the demo
 gem "ajdc"
